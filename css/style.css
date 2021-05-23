@@ -1,0 +1,168 @@
+html {
+  font-family: "Source Sans Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #eee;
+  margin-top: 60px;
+  background-color: black;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 33%;
+}
+
+a {
+  text-decoration: none;
+  color: #eee;
+}
+
+header {
+  grid-column: 2 / span 2;
+}
+
+main {
+  grid-column: 2 / span 2;
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+  }
+  header {
+    grid-column: 2 / span 4;
+  }
+}
+
+#background {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+ul {
+  padding-inline-start: 1.5em;
+}
+
+h1,
+.fs1 {
+  font-size: 2em;
+}
+
+h2,
+.fs2 {
+  font-size: 1em;
+}
+
+h3,
+.fs3 {
+  font-size: 1.17em;
+}
+
+h1.underline {
+  color: #eee;
+  position: relative;
+  width: fit-content;
+}
+
+.underline::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  height: 5px;
+  background-color: #ff6961;
+  transition: 0.5s;
+}
+
+.underline:hover::after {
+  animation-name: underline;
+  animation-duration: 1s;
+  width: calc(100% - 2.75ch);
+  left: 2.75ch;
+}
+
+@keyframes underline {
+  from {
+    left: 0;
+    width: 0;
+  }
+  33% {
+    left: 0;
+    width: 2ch;
+  }
+  to {
+    width: calc(100% - 2.75ch);
+    left: 2.75ch;
+  }
+}
+
+i.fab {
+  font-size: 1.5em;
+  margin: 0.25em;
+}
+
+i.fas,
+i.far {
+  font-size: 1.25em;
+  margin: 0.125em;
+}
+
+i.fab {
+  color: #eee;
+}
+i.fab:hover {
+  color: #ff6961;
+}
+
+.red,
+i.red:hover {
+  color: #ff6961;
+}
+
+.underline.red::after {
+  background-color: #ff6961;
+}
+
+.green,
+i.green:hover {
+  color: #c1e1c1;
+}
+
+.underline.green::after {
+  background-color: #c1e1c1;
+}
+
+.blue,
+i.blue:hover {
+  color: #a7c7e7;
+}
+
+.underline.blue::after {
+  background-color: #a7c7e7;
+}
+
+.flex-apart-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flex-apart-wrap > * {
+  margin: 0;
+}
+
+.dots {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+
+.dots > i:hover:not(.fas) {
+  font-weight: 800;
+  opacity: 0.66;
+}

@@ -1,0 +1,17 @@
+i.far,
+i.fas,
+i.fab {
+  font-style: normal;
+}
+.fa-github:before {
+  content: "\f09b";
+}
+.fa-linkedin-in:before {
+  content: "\f0e1";
+}
+.fa-instagram:before {
+  content: "\f16d";
+}
+.fa-circle:before {
+  content: "\f111";
+}
