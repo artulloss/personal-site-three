@@ -36,52 +36,19 @@ renderer.render(scene, camera);
 
 const geometry = new THREE.IcosahedronGeometry(10, 0);
 
-const fragmentShader = `
-  #include <common>
-
-  uniform vec3 iResolution;
-  uniform float iTime;
-
-  void mainImage( out vec4 fragColor, in vec2 fragCoord )
-  {
-      // Normalized pixel coordinates (from 0 to 1)
-      vec2 uv = fragCoord/iResolution.xy;
-  
-      // Time varying pixel color
-      vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
-  
-      // Output to screen
-      fragColor = vec4(col,1.0);
-  }
-  void main() {
-    mainImage(gl_FragColor, gl_FragCoord.xy);
-  }
-  `;
-const uniforms = {
-  iTime: { value: 0 },
-  iResolution: { value: new THREE.Vector3() },
-};
-const shaderMaterial = new THREE.ShaderMaterial({
-  fragmentShader,
-  uniforms,
-  opacity: 0,
-  wireframe: true,
-  wireframeLinewidth: 5,
+const material = new THREE.MeshStandardMaterial({
+  color: 0xffffff,
+  metalness: 0.1,
+  roughness: 0.5,
 });
-const shaderPolyHedron = new THREE.Mesh(geometry, shaderMaterial);
-const polyHedron = new THREE.Mesh(
-  new THREE.IcosahedronGeometry(10, 0),
-  new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    metalness: 0.1,
-    roughness: 0.5,
-  })
-);
+
+const polyHedron = new THREE.Mesh(geometry, material);
+const reversePolyHedron = new THREE.Mesh(geometry, material);
 
 const pointLight = new THREE.PointLight(0xffffff, 1);
 pointLight.position.set(-33, 20, 50);
 
-scene.add(shaderPolyHedron, polyHedron, pointLight);
+scene.add(reversePolyHedron, polyHedron, pointLight);
 
 document.body.appendChild(renderer.domElement);
 
@@ -143,11 +110,9 @@ function animate(time) {
     polyHedron.rotation.y += 0.001;
     polyHedron.rotation.z += 0.001;
   }
-  shaderPolyHedron.rotation.x = polyHedron.rotation.x * -1;
-  shaderPolyHedron.rotation.y = polyHedron.rotation.y * -1;
-  shaderPolyHedron.rotation.z = polyHedron.rotation.z * -1;
-  uniforms.iResolution.value.set(window.innerWidth, window.innerHeight, 1);
-  uniforms.iTime.value = time;
+  reversePolyHedron.rotation.x = polyHedron.rotation.x * -1;
+  reversePolyHedron.rotation.y = polyHedron.rotation.y * -1;
+  reversePolyHedron.rotation.z = polyHedron.rotation.z;
 }
 
 animate();
@@ -189,6 +154,7 @@ function changeColor(element, colorAndHex) {
   });
   window.localStorage.setItem("color", color);
   polyHedron.material.color = new THREE.Color(color);
+  reversePolyHedron.material.color = new THREE.Color(color);
 
   // Social / Branding Icons
 
