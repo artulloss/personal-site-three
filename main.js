@@ -7,9 +7,9 @@ import * as THREE from "three";
 
 const scene = new THREE.Scene();
 
-let color = Number(window.localStorage.getItem("color") ?? 0xff0000);
+let color = window.localStorage.getItem("color") ?? 0xff6961;
 
-console.log({ color });
+color = Number(color);
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -144,7 +144,6 @@ function changeColor(element, colorAndHex) {
     .filter((key) => colors[key] !== color)
     .map((color) => "." + color + ":not(.fab):not(.underline)") // Otherwise we will add the .far (regular) class to the .fab (business) and .underline ones
     .join(",");
-  console.log({ selector });
   document.querySelectorAll(selector).forEach((e) => {
     e.classList.remove("fas");
     e.classList.add("far");
@@ -174,8 +173,6 @@ for (const button of buttons) {
 }
 
 const colorName = Object.keys(colors).filter((key) => colors[key] === color);
-
-console.log("E", Object.keys(colors));
 
 changeColor(document.querySelector("." + colorName), {
   color: colorName,
