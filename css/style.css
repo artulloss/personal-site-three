@@ -35,6 +35,9 @@ main {
   header {
     grid-column: 2 / span 4;
   }
+  main {
+    grid-column: 2 / span 4;
+  }
 }
 
 #background {
@@ -154,6 +157,10 @@ i.blue:hover {
 
 .flex-apart-wrap > * {
   margin: 0;
+}
+
+.flex-apart-wrap > h3 {
+  margin-right: 1ch;
 }
 
 .dots {
