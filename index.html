@@ -7,10 +7,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="stylesheet" href="./css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Site</title>
@@ -23,6 +26,10 @@
       property="og:image"
       content="https://twemoji.maxcdn.com/2/svg/2728.svg"
     />
+    <meta
+      name="description" 
+      content="Hi, I'm Adam. This is my personal website where you can learn about me."
+    />
   </head>
   <body>
     <header>
@@ -31,11 +38,11 @@
         I'm a front end web developer with a passion for learning new things.
       </p>
       <span>
-        <a href="https://github.com/artulloss"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/adam-tulloss/"
+        <a href="https://github.com/artulloss" aria-label="Github"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/adam-tulloss/" aria-label="LinkedIn"
           ><i class="fab fa-linkedin-in"></i
         ></a>
-        <a href="https://www.instagram.com/adam.tulloss"
+        <a href="https://www.instagram.com/adam.tulloss" aria-label="Instagram"
           ><i class="fab fa-instagram"></i
         ></a>
       </span>
