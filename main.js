@@ -2,6 +2,17 @@ import "./css/regular.min.css";
 import "./css/solid.min.css";
 import "./css/brands.min.css";
 import "./css/font-awesome-custom.css";
+import MicroModal from "micromodal";
+
+MicroModal.init({
+  onShow: (modal) => console.info(`${modal.id} is shown`), // [1]
+  onClose: (modal) => console.info(`${modal.id} is hidden`), // [2]
+  disableScroll: true, // [6]
+  disableFocus: false, // [7]
+  awaitOpenAnimation: false, // [8]
+  awaitCloseAnimation: false, // [9]
+  debugMode: false, // [10]
+});
 
 import * as THREE from "three";
 
@@ -141,32 +152,23 @@ function getColor(element) {
 }
 
 function changeColor(element, colorAndHex) {
-  const color = colorAndHex.hex;
+  const { color, hex } = colorAndHex;
   element.classList.remove("far");
   element.classList.add("fas");
   const selector = Object.keys(colors)
-    .filter((key) => colors[key] !== color)
-    .map((color) => "." + color + ":not(.fab):not(.underline)") // Otherwise we will add the .far (regular) class to the .fab (business) and .underline ones
+    .filter((key) => colors[key] !== hex)
+    .map((hex) => "." + hex + ":not(html)") // Otherwise we will add the .far (regular) class to the .fab (business) and .underline ones
     .join(",");
   document.querySelectorAll(selector).forEach((e) => {
     e.classList.remove("fas");
     e.classList.add("far");
   });
-  window.localStorage.setItem("color", color);
-  polyHedron.material.color = new THREE.Color(color);
-  reversePolyHedron.material.color = new THREE.Color(color);
-
-  // Social / Branding Icons
-
-  document.querySelectorAll("i.fab").forEach((icon) => {
-    icon.classList.remove("red", "green", "blue");
-    icon.classList.add(colorAndHex.color);
-  });
-
-  document.querySelectorAll(".underline").forEach((element) => {
-    element.classList.remove("red", "green", "blue");
-    element.classList.add(colorAndHex.color);
-  });
+  window.localStorage.setItem("color", hex);
+  polyHedron.material.color = new THREE.Color(hex);
+  reversePolyHedron.material.color = new THREE.Color(hex);
+  const html = document.querySelector("html");
+  html.classList = [];
+  html.classList.add(color);
 }
 
 const buttons = document.querySelectorAll("i.red, i.green, i.blue");

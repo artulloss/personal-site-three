@@ -7,14 +7,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
       <link
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
         rel="stylesheet"
       />
     </noscript>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="./css/style.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="./css/style.css" rel="stylesheet" />
+    </noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Site</title>
     <meta property="og:title" content="Adam Tulloss - Personal Website" />
@@ -27,7 +40,7 @@
       content="https://twemoji.maxcdn.com/2/svg/2728.svg"
     />
     <meta
-      name="description" 
+      name="description"
       content="Hi, I'm Adam. This is my personal website where you can learn about me."
     />
   </head>
@@ -38,12 +51,22 @@
         I'm a front end web developer with a passion for learning new things.
       </p>
       <span>
-        <a href="https://github.com/artulloss" aria-label="Github"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/adam-tulloss/" aria-label="LinkedIn"
+        <a href="https://github.com/artulloss" aria-label="Github"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/adam-tulloss/"
+          aria-label="LinkedIn"
           ><i class="fab fa-linkedin-in"></i
         ></a>
         <a href="https://www.instagram.com/adam.tulloss" aria-label="Instagram"
           ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="#contact"
+          data-micromodal-trigger="contact-modal"
+          aria-label="Contact"
+          ><i class="far fa-paper-plane"></i
         ></a>
       </span>
     </header>
@@ -106,6 +129,72 @@
         <i class="far fa-circle blue"></i>
       </div>
     </main>
+
+    <div id="contact-modal" aria-hidden="true">
+      <!-- [2] -->
+      <div class="modal-background" tabindex="-1" data-micromodal-close>
+        <!-- [3] -->
+        <div
+          class="modal-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-modal-title"
+        >
+          <button
+            class="x-btn"
+            aria-label="Close modal"
+            data-micromodal-close
+          ></button>
+
+          <div class="modal-content" id="contact-modal-content">
+            <header>
+              <h2 id="contact-modal-title" class="fs2">Contact</h2>
+            </header>
+
+            <form
+              action="https://app.99inbound.com/api/e/GVQhI1lC"
+              method="POST"
+              target="_blank"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+              /><br />
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+              /><br />
+              <input type="text" name="company" placeholder="Company" /><br />
+              <textarea
+                name="reason"
+                placeholder="Reason"
+                required
+                minlength="20"
+                maxlength="200"
+              ></textarea>
+              <div id="submitDiv">
+                <input type="submit" value="Submit" />
+              </div>
+              <!-- Honeypot field to block spam -->
+              <div style="position: absolute; left: -5000px">
+                <input
+                  type="checkbox"
+                  name="vegan_crimson_wavy_window"
+                  value="1"
+                  tabindex="-1"
+                  autocomplete="no"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <canvas id="background"></canvas>
     <script type="module" src="/main.js"></script>
   </body>
