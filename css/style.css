@@ -125,7 +125,8 @@ html.red .underline::after {
   background-color: #ff6961;
 }
 
-html.red input[type="submit"] {
+html.red input[type="submit"],
+html.red button {
   background-color: #ff6961;
 }
 
@@ -137,7 +138,8 @@ html.green .underline::after {
   background-color: #c1e1c1;
 }
 
-html.green input[type="submit"] {
+html.green input[type="submit"],
+html.green button {
   background-color: #c1e1c1;
 }
 
@@ -149,7 +151,8 @@ html.blue .underline::after {
   background-color: #a7c7e7;
 }
 
-html.blue input[type="submit"] {
+html.blue input[type="submit"],
+html.blue button {
   background-color: #a7c7e7;
 }
 
@@ -217,7 +220,6 @@ html.blue input[type="submit"] {
   width: 20px;
   height: 20px;
   text-align: center;
-  background: #ff6961;
   border: none;
 }
 
