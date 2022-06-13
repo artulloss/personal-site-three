@@ -14,22 +14,33 @@ MicroModal.init({
   debugMode: false, // [10]
 });
 
-import * as THREE from "three";
+import {
+  Scene,
+  PerspectiveCamera,
+  WebGLRenderer,
+  IcosahedronGeometry,
+  MeshStandardMaterial,
+  Mesh,
+  PointLight,
+  Quaternion,
+  Euler,
+  Color
+} from "three";
 
-const scene = new THREE.Scene();
+const scene = new Scene();
 
 let color = window.localStorage.getItem("color") ?? 0xff6961;
 
 color = Number(color);
 
-const camera = new THREE.PerspectiveCamera(
+const camera = new PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
 
-const renderer = new THREE.WebGLRenderer({
+const renderer = new WebGLRenderer({
   canvas: document.getElementById("background"),
   alpha: true,
 });
@@ -45,18 +56,18 @@ camera.position.setZ(30);
 
 renderer.render(scene, camera);
 
-const geometry = new THREE.IcosahedronGeometry(10, 0);
+const geometry = new IcosahedronGeometry(10, 0);
 
-const material = new THREE.MeshStandardMaterial({
+const material = new MeshStandardMaterial({
   color: 0xffffff,
   metalness: 0.1,
   roughness: 0.5,
 });
 
-const polyHedron = new THREE.Mesh(geometry, material);
-const reversePolyHedron = new THREE.Mesh(geometry, material);
+const polyHedron = new Mesh(geometry, material);
+const reversePolyHedron = new Mesh(geometry, material);
 
-const pointLight = new THREE.PointLight(0xffffff, 1);
+const pointLight = new PointLight(0xffffff, 1);
 pointLight.position.set(-33, 20, 50);
 
 scene.add(reversePolyHedron, polyHedron, pointLight);
@@ -91,8 +102,8 @@ renderer.domElement.addEventListener("mousemove", (e) => {
   };
 
   if (isDragging) {
-    deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(
+    deltaRotationQuaternion = new Quaternion().setFromEuler(
+      new Euler(
         toRadians(deltaMove.y * 0.1),
         toRadians(deltaMove.x * 0.1),
         0,
@@ -164,8 +175,8 @@ function changeColor(element, colorAndHex) {
     e.classList.add("far");
   });
   window.localStorage.setItem("color", hex);
-  polyHedron.material.color = new THREE.Color(hex);
-  reversePolyHedron.material.color = new THREE.Color(hex);
+  polyHedron.material.color = new Color(hex);
+  reversePolyHedron.material.color = new Color(hex);
   const html = document.querySelector("html");
   html.classList = [];
   html.classList.add(color);
